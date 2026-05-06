@@ -1438,6 +1438,45 @@ body {
   .plans-page {
     padding: 1.25rem;
   }
+}
+
+/* iPhone: Restore single-column scrollable cards */
+@media (max-width: 640px) {
+  .offers-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.9rem;
+  }
+
+  .offer-card {
+    min-height: auto;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .offer-popular-badge {
+    top: 0.65rem;
+    right: 0.65rem;
+  }
+
+  .plans-page {
+    padding: 1rem;
+    padding-top: 4rem;
+    gap: 1rem;
+  }
+
+  .close-button {
+    position: fixed;
+    top: env(safe-area-inset-top, 0.5rem);
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    z-index: 300;
+  }
+
+  .close-button svg {
+    width: 18px;
+    height: 18px;
+  }
 
   .plans-hero {
     gap: 0.65rem;
