@@ -9,6 +9,14 @@
 html,
 body {
   height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 :root {
@@ -44,10 +52,11 @@ body {
 
 .app-container {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  overflow: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -326,6 +335,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0;
 }
 
 .chat-container {
@@ -334,6 +344,7 @@ body {
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  max-height: 100%;
   padding: 2rem;
   position: relative;
 }
@@ -351,6 +362,7 @@ body {
   justify-content: center;
   gap: 1.5rem;
   min-height: 0;
+  max-height: 100%;
   position: relative;
 }
 
