@@ -99,8 +99,11 @@ body {
   opacity: 0.9;
 }
 
-.sidebar-logo svg {
+.sidebar-logo-img {
   display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .sidebar.expanded .sidebar-logo {
@@ -308,8 +311,7 @@ body {
 
 .dark-mode .sidebar svg,
 .dark-mode .theme-toggle svg,
-.dark-mode .send-button svg,
-.dark-mode .sidebar-logo svg {
+.dark-mode .send-button svg {
   color: var(--accent-color);
 }
 

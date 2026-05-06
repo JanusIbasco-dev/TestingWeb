@@ -154,6 +154,7 @@ export default function App() {
   const [hasConversationStarted, setHasConversationStarted] = useState(false);
   const [activePage, setActivePage] = useState('chat');
   const [editingMessageId, setEditingMessageId] = useState(null);
+  const [lastSentMessageId, setLastSentMessageId] = useState(null);
 
   // Detect system theme preference on mount and listen for changes
   useEffect(() => {
@@ -175,6 +176,7 @@ export default function App() {
         timestamp: new Date(),
       };
       setConversations([...conversations, newMessage]);
+      setLastSentMessageId(newMessage.id);
       setCurrentMessage('');
       setHasConversationStarted(true);
     }
@@ -195,6 +197,7 @@ export default function App() {
         timestamp: new Date(),
       };
       setConversations([...conversations, newMessage]);
+      setLastSentMessageId(newMessage.id);
       setCurrentMessage('');
       setHasConversationStarted(true);
     }
@@ -293,7 +296,7 @@ export default function App() {
           {/* Conversation View */}
           <div className="conversation">
             {conversations.map((msg) => (
-              <div key={msg.id} className="message-wrapper">
+              <div key={msg.id} className={`message-wrapper ${lastSentMessageId === msg.id ? 'sent-message' : ''}`}>
                 <div
                   className="message-item user-message"
                   contentEditable={editingMessageId === msg.id}
@@ -498,9 +501,7 @@ export default function App() {
         )}
 
         <div className="sidebar-logo" aria-hidden="true" title="Awan pay nagan na">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-            <circle cx="12" cy="12" r="8" />
-          </svg>
+          <img src="/AI_LOGO.png" alt="Logo" className="sidebar-logo-img" />
         </div>
 
         <div className="sidebar-buttons">
