@@ -245,17 +245,17 @@ export default function App() {
           <BurgerIcon />
         </button>
 
-        {hasConversationStarted && (
-          <button
-            type="button"
-            className="gift-button-top mobile-offers-button"
-            onClick={openOffersPage}
-            aria-label="View offers"
-          >
-            <GiftIcon />
-            <span>See Offers</span>
-          </button>
-        )}
+          {hasConversationStarted && (
+        <button
+          type="button"
+          className="gift-button-top mobile-offers-button"
+          onClick={openOffersPage}
+          aria-label="See offers"
+        >
+          <GiftIcon />
+          <span>See Offers</span>
+        </button>
+      )}
 
         <button
           type="button"
@@ -284,7 +284,7 @@ export default function App() {
             type="button"
             className="gift-button-top"
             onClick={openOffersPage}
-            aria-label="View offers"
+            aria-label="See offers"
           >
             <GiftIcon />
             <span>See Offers</span>
@@ -388,41 +388,43 @@ export default function App() {
       ) : (
         <>
           {/* Welcome Message and Centered Input */}
-          <div className="empty-chat">
-            <div className="welcome-message">Let's Study?</div>
-            <button
-              type="button"
-              className="offers-toggle"
-              onClick={openOffersPage}
-              aria-label="See offers"
-            >
-              <GiftIcon />
-              <span>See Offers</span>
-            </button>
-            <div className="chat-input-section centered">
-              <div className="input-pill">
-                <input
-                  value={currentMessage}
-                  onChange={(e) => setCurrentMessage(e.target.value)}
-                  onKeyDown={handleSendMessage}
-                  placeholder="Message {awan pay nagan na}"
-                  className="chat-input single-line"
-                  aria-label="Chat input"
-                  autoComplete="off"
-                  spellCheck={false}
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                />
-                <button
-                  className="send-button"
-                  onClick={sendMessage}
-                  aria-label="Send"
-                >
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M22 2L11 13" />
-                    <path d="M22 2l-7 20-4-9-9-4 20-7z" />
-                  </svg>
-                </button>
+          <div className="empty-chat center-viewport">
+            <div className="chat-centered">
+              <div className="welcome-message">Let's Study?</div>
+              <button
+                type="button"
+                className="offers-toggle"
+                onClick={openOffersPage}
+                aria-label="See offers"
+              >
+                <GiftIcon />
+                <span>See Offers</span>
+              </button>
+              <div className="chat-input-section centered">
+                <div className="input-pill">
+                  <input
+                    value={currentMessage}
+                    onChange={(e) => setCurrentMessage(e.target.value)}
+                    onKeyDown={handleSendMessage}
+                    placeholder="Message {awan pay nagan na}"
+                    className="chat-input single-line"
+                    aria-label="Chat input"
+                    autoComplete="off"
+                    spellCheck={false}
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                  />
+                  <button
+                    className="send-button"
+                    onClick={sendMessage}
+                    aria-label="Send"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M22 2L11 13" />
+                      <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

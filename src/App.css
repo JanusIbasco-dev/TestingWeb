@@ -332,7 +332,8 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
+  min-height: 0;
   padding: 2rem;
   position: relative;
 }
@@ -351,6 +352,110 @@ body {
   gap: 1.5rem;
   min-height: 0;
   position: relative;
+}
+
+/* Utility: center an area in the viewport */
+.center-viewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Use dynamic viewport height to avoid mobile browser chrome issues */
+  min-height: 100dvh;
+  width: 100%;
+  /* respect iOS safe-area insets */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  /* allow a vertical nudge (useful when top chrome or absolute elements push visual center)
+     set --center-shift in a media query to move centered content down */
+  transform: translateY(var(--center-shift, 0));
+}
+
+/* Chat-specific centered wrapper (use instead of .empty-chat when you
+   want the hero + input to sit perfectly centered) */
+.chat-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+
+/* Mobile adjustments to keep the chat visually centered */
+@media (max-width: 640px) {
+  .chat-centered {
+    padding: 0.9rem 0.9rem;
+    max-width: 96%;
+  }
+
+  /* If applying the center utility to chat container, reduce its inner padding */
+  .chat-container.center-viewport,
+  .center-viewport.chat-container {
+    padding: 0.75rem;
+  }
+
+  /* Ensure child elements stretch nicely on narrow screens */
+  .chat-centered > * {
+    width: 100%;
+  }
+}
+
+/* Force true vertical centering for the welcome / empty chat on mobile */
+@media (max-width: 640px) {
+  .empty-chat.center-viewport {
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+
+  /* reset any mobile nudge so the wrapper sits exactly centered */
+  .center-viewport {
+    --center-shift: 0;
+  }
+}
+
+/* iPad Mini / small tablets portrait: keep content centered but reduce upward nudge */
+@media (min-width: 641px) and (max-width: 820px) {
+  .empty-chat.center-viewport {
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+
+  .center-viewport {
+    /* less aggressive upward shift so center feels natural on tablets */
+    --center-shift: -4vh;
+  }
+}
+
+/* Keep the offers button from stretching full-width on small screens */
+@media (max-width: 640px) {
+  .chat-centered .offers-toggle {
+    width: auto;
+    max-width: 420px;
+    align-self: center;
+  }
+}
+
+/* Mobile tweak: nudge the centered area down to account for top controls */
+@media (max-width: 640px) {
+  .center-viewport {
+    --center-shift: -14vh;
+  }
+}
+
+/* Desktop: small upward nudge so hero feels visually centered on large viewports */
+@media (min-width: 821px) {
+  .center-viewport {
+    --center-shift: -6vh;
+  }
 }
 
 .welcome-message {
@@ -853,13 +958,14 @@ body {
 
 /* Conversation View */
 .conversation {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.75rem;
   overflow-y: auto;
   overflow-x: hidden;
+  min-height: 0;
   margin: 0 auto 2rem auto;
   padding-right: 3rem;
   padding-left: 1rem;
