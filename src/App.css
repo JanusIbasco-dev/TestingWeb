@@ -1460,17 +1460,16 @@ body {
 
   .plans-page {
     padding: 1rem;
-    padding-top: 4rem;
     gap: 1rem;
   }
 
   .close-button {
-    position: fixed;
-    top: env(safe-area-inset-top, 0.5rem);
-    right: 0.75rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     width: 36px;
     height: 36px;
-    z-index: 300;
+    z-index: 10;
   }
 
   .close-button svg {
