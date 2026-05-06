@@ -136,6 +136,16 @@ function ProfileIcon() {
   );
 }
 
+function BurgerIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 6h16" />
+      <path d="M4 12h16" />
+      <path d="M4 18h16" />
+    </svg>
+  );
+}
+
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [conversations, setConversations] = useState([]);
@@ -221,6 +231,38 @@ export default function App() {
 
   const renderChatPage = () => (
     <div className="chat-container">
+      {/* Mobile Top Bar */}
+      <div className="mobile-top-bar">
+        <button
+          type="button"
+          className="mobile-sidebar-toggle"
+          onClick={() => setIsSidebarExpanded(true)}
+          aria-label="Open sidebar"
+        >
+          <BurgerIcon />
+        </button>
+
+        {hasConversationStarted && (
+          <button
+            type="button"
+            className="gift-button-top mobile-offers-button"
+            onClick={openOffersPage}
+            aria-label="View offers"
+          >
+            <GiftIcon />
+            <span>See Offers</span>
+          </button>
+        )}
+
+        <button
+          type="button"
+          className="mobile-profile-button"
+          aria-label="Profile"
+        >
+          <ProfileIcon />
+        </button>
+      </div>
+
       {/* Profile Button - Always Visible in Top Right */}
       <div className="profile-button-container">
         <button

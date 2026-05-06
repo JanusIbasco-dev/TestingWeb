@@ -335,6 +335,10 @@ body {
   position: relative;
 }
 
+.mobile-top-bar {
+  display: none;
+}
+
 /* Empty Chat State */
 .empty-chat {
   flex: 1;
@@ -1156,6 +1160,93 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .app-container {
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(82vw, 280px);
+    padding: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    z-index: 200;
+    box-shadow: none;
+  }
+
+  .sidebar.expanded {
+    width: min(82vw, 280px);
+    transform: translateX(0);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .sidebar.collapsed {
+    width: min(82vw, 280px);
+    transform: translateX(-100%);
+    cursor: default;
+  }
+
+  .mobile-top-bar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0 0.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 150;
+    background: linear-gradient(180deg, var(--bg-primary) 82%, rgba(0, 0, 0, 0));
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-sidebar-toggle,
+  .mobile-profile-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .mobile-sidebar-toggle svg,
+  .mobile-profile-button svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    fill: none;
+  }
+
+  .mobile-offers-button {
+    justify-self: center;
+    max-width: 100%;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.7rem;
+    gap: 0.35rem;
+  }
+
+  .profile-button-container,
+  .top-gift-button-container {
+    display: none;
+  }
+
+  .chat-container {
+    padding: 1rem;
+  }
+
+  .empty-chat {
+    justify-content: flex-start;
+    padding-top: 3rem;
+  }
+
   .offers-grid {
     grid-template-columns: 1fr;
   }
@@ -1178,6 +1269,26 @@ body {
 
   .offer-header {
     padding-right: 0;
+  }
+
+  .conversation {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .message-wrapper {
+    max-width: 88%;
+  }
+
+  .chat-input-section.centered,
+  .chat-input-section.bottom {
+    max-width: 100%;
+  }
+
+  .welcome-message {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    text-align: center;
   }
 
   .send-button {
